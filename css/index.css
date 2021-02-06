@@ -1,0 +1,37 @@
+main
+{
+  text-align: center;
+  margin:0 auto;
+  margin-top: 50px;
+  width: 25%
+}
+
+#input_nickname
+{
+  width: 70%
+}
+
+
+#create
+{
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+#join
+{
+	margin-bottom: 20px;
+}
+
+.initial-buttons
+{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  display: inline-block;
+  font-size: 60px; 
+}
