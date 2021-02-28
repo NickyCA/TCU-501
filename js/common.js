@@ -36,7 +36,7 @@ export default class Common {
       icon: 'error',
       title: titleText,
       text: errorMessage,
-      confirmButtonText: 'Bueno',
+      confirmButtonText: 'OK',
       confirmButtonColor: baseColorOne,
       timer: 2000,
       timerProgressBar: true,
@@ -54,65 +54,55 @@ export default class Common {
       title: titleText,
       icon: 'error',
       html:
-        `${'Corrija los siguientes errores: '
+        `${'Fix the following errors: '
         + '<ul>'}${html}</ul> `,
       showCloseButton: true,
       focusConfirm: true,
       confirmButtonText:
-        'Bueno',
+        'OK',
       confirmButtonColor: baseColorOne,
     });
   }
 
   static showHelp() {
     const htmlHelp = `<div class="help-content">
-      <h3>Reglas del juego</h3>
+      <h3>Game's rules</h3>
       <ul>
-        <li>Cada jugador tratará de encontrar las cartas asignadas en el tablero</li>
-        <li>Las cartas asignadas se mostrarán sin color, sin embargo, en el tablero los colores variaran.</li> 
-        <li>Si se juega por rondas, cada ronda deberán encontrarse la cantidad de cartas configuradas por el anfitrión.</li>
-        <li>Si se juega por puntos, independientemente del número de cartas faltantes por encontrar, si se ha alcanzado la cantidad de puntos configurado. 
-        por el anfitrión entonces dicho jugador ganará.</li>
-        <li>Si se activa el botón de ganador, deberá presionarse este botón para indicar que se ha ganado la partida, de lo contrario
-        el juego no anunciará un ganador hasta que alguien lo presione (y haya encontrado todas sus cartas).</li>
-        <li>Si se activa la carta trampa, podrá ocultarse una carta de un contrincante. Solo se puede una por ronda.</li>
+        <li>RULES: TO DO</li>
       </ul>
-      <h3>Créditos</h3>
-      <p>Logo creado por <a href="https://www.flaticon.com/authors/freepik" title="Freepik" target="_blank">Freepik</a></p>
-      <p>Fuente de los íconos obtenidos <a href="https://mariodelvalle.github.io/CaptainIconWeb/" target="_blank">aquí</a></p>
     <div>`;
     Swal.fire({
-      title: 'Ayuda',
+      title: 'Help',
       icon: 'info',
       html: htmlHelp,
       showCloseButton: true,
       focusConfirm: true,
       confirmButtonText:
-        'Listo',
+        'Done',
       confirmButtonColor: baseColorOne,
     });
   }
 
   static exitConfirm(socket) {
     Swal.fire({
-      title: '¿Abandonar la partida?',
-      text: 'Volverá a la pantalla de inicio',
+      title: 'Leave game?',
+      text: 'Returning to main screen',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: baseColorOne,
       cancelButtonColor: baseColorTwo,
-      confirmButtonText: 'Sí',
+      confirmButtonText: 'Yes',
       cancelButtonText: 'No',
       focusCancel: true,
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title: 'Saliendo',
-          text: '¡Adiós!',
+          title: 'Leaving game',
+          text: 'Bye bye!',
           imageUrl: 'https://i.imgflip.com/44360m.jpg',
           timer: 2000,
           timerProgressBar: true,
-          confirmButtonText: 'Bueno',
+          confirmButtonText: 'OK',
           confirmButtonColor: baseColorOne,
           willClose: () => {
             leaveGame(socket);
