@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
-
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="author" content="Castillo, Nicole" />
@@ -15,40 +14,40 @@
 	<link rel="mask-icon" href="img/logo/safari-pinned-tab.svg" color="#5bbad5"/>
 	<meta name="msapplication-TileColor" content="#da532c"/>
 	<meta name="theme-color" content="#ffffff"/>
-  <title>Find Me!</title>
-  <link href="css/index.css" rel="stylesheet" />
-  <link href="css/common.css" rel="stylesheet" />
+  <title>Index Find Me!</title>
+  <link href="css/common.css" rel="stylesheet"/> 
+  <link href="css/index.css" rel="stylesheet"/> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee"/>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower" rel="stylesheet"/> 
 
 </head>
-
-<body class="Site">
-  <header id="website_header">
-    <img id="site_logo" src="img/logo/Doll.png" alt="Logo del sitio" />
-    <h1 id="site_title">Find Me!</h1>
-  </header>
-  <main class="info_objects">
-    <h2 data-shadow='Jugar'>Let's Play</h2>
-    <div class="initial-buttons">
-      <button class="big-button" id="create">Create Game</button>
-      <button class="big-button" id="join">Join Game</button>
-    </div>
-  </main>
-  <footer class="footer-info">
-	<div id="footer-info">
-	  <p>
-		<small><br />
-		  <a href="https://accionsocial.ucr.ac.cr/galeria/tcu-501-materiales-didacticos-en-ingles/" target="_blank"><img src="img/tcu.svg"
-			  class="information" alt="project-info" /></a> <br />
-		</small>
-	  </p>
-	</div>
-	<div id="help-button-section">
-	  <img id="help-img-button" alt="help" src="img/help.svg" class="help-button"/>
-	</div>
-  </footer>
-  <script src="./socket.io/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <script async="async" type="module" src="js/index.js"></script>
-</body>
-
+  <body class="Site">
+    <header id="website_header">
+			<img id="site_logo" src="img/logo/Doll.png" alt="Logo del sitio" />
+			<h1 id="site_title">Find Me!</h1>
+		</header>
+    <main class="info_objects">
+      <h2>Let's play!</h2>
+      <!-- <label for="input_nickname">Name:</label>
+      <input type="text" id="input_nickname" name="input_nickname" /> -->
+     <!--  <form action="./sala_espera.xhtml"> -->
+        <button id="create">Start Game</button>
+     <!--  </form> -->
+    </main>
+    <footer class="footer-info">
+			<div id="footer-info">
+			  <p>
+				<small><br />
+				  <a href="https://accionsocial.ucr.ac.cr/galeria/tcu-501-materiales-didacticos-en-ingles/" target="_blank"><img src="img/tcu.svg"
+					  class="information" alt="project-info" /></a> <br />
+				</small>
+			  </p>
+			</div>
+			<div id="help-button-section">
+				<img id="help-img-button" alt="help" src="img/help.svg" class="help-button"/>
+			</div>
+		  </footer>
+		  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		  <script async="async" src="js/index.js"></script>
+  </body>
 </html>

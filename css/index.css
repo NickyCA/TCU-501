@@ -23,15 +23,3 @@ main
 	margin-bottom: 20px;
 }
 
-.initial-buttons
-{
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-h2 {
-  display: inline-block;
-  font-size: 60px; 
-}

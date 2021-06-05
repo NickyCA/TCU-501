@@ -7,13 +7,6 @@
   margin-left: 10px;
 }
 
-@media (max-width: 550px) {
-  #players_panel {
-    width: 100%;
-    margin: 30px;
-  }
-}
-
 #players_tag li {
   margin-left: 20px;
   list-style-type: decimal;
@@ -74,15 +67,4 @@ label.waiting_room_title_col {
   font-size: 25px;
   padding-top: 30px;
   padding-right: 30px;
-}
-
-.buttonsContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  margin: 10px;
 }

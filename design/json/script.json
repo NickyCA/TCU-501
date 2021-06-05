@@ -1,0 +1,90 @@
+//V1
+
+{
+"Reglas activadas": 
+	{"basta": , "rondas": , "puntos": },
+"Tablero":
+	{"tamanyo": , "objetos": [, , ,]},
+"Jugadores":
+	{"nombre": , "cartas a encontrar": [, , ,], "cartas encontradas": [, , ,], "puntaje": , "gano": },
+ 
+}
+
+//V2
+{
+"Reglas activadas": 
+	{"basta": , "rondas": , "puntos": },
+"Tablero":
+	{"tamanyo": , "objetos": [, , ,]},
+"Jugadores":
+	{"nombre": , "cartas a encontrar": [, , ,] },
+ 
+}
+
+
+
+{
+"Estado Jugadores":
+	{"cartas encontradas": [, , ,], "puntaje": , "gano": }
+}
+
+Formato Json
+
+Info necesaria
+
+Reglas activadas: 
+bonton basta, rondas, puntos. (1/0 c/u) 
+
+Tablero:
+tamanyo, objetos
+
+Jugadores (se deberia actualizar a lo largo del juego)
+JugadoX:
+Nombre, cartas a encontrar
+Estado del jugadorX
+cartas encontradas, puntaje, gano?
+
+
+Guion
+- Servidor -> S
+- Jugador 1 - Anfitrión -> A
+- Jugador 2 - Invitado -> J
+
+------------------- Pantalla Inicio ----------------------
+Escenario 1: A Inicia juego como anfitrión
+
+A -> Mensaje a S con nombre
+S -> Mensaje a A con ID sesión y ID de usuario 
+
+Escenario 2: J Inicia juego como invitado
+J -> Mensaje a S con nombre + ID
+S -> Mensaje a J con ID (Confirmando que existe la sesión)
+
+------------------- Pantalla Sala de Espera ----------------------
+Escenario 3: J se une a la sala de espera (Broadcasting)
+S -> Mensaje a A con información de otros jugadores actualizada
+S -> Mensaje a J con información de otros jugadores actualizada
+
+Escenario 4: A inicia la partida
+A -> Mensaje a S con configuración de la partida.
+S -> Mensaje a J para iniciar la partida.
+
+------------------- Pantalla Juego ----------------------
+Escenario 5: S reparte objetos y cartas de jugadores
+S -> Mensaje a A con tablero con objetos y cartas propias y de los otros jugadores, puntaje, rondas/puntos pendientes.
+S -> Mensaje a J con tablero con objetos y cartas propias y de los otros jugadores, puntaje, rondas/puntos pendientes.
+
+Escenario 6: J encuentra una carta.
+J -> Mensaje a S con estado cartas encontradas.
+S -> Mensaje a A con estado cartas otros jugadores, puntaje.
+
+Escenario 7: A encuentra una carta.
+A -> Mensaje a S con estado cartas encontradas.
+S -> Mensaje a J con estado cartas otros jugadores, puntaje.
+
+Escenario 8: J encuentra su última carta.
+J -> Mensaje a S con estado cartas encontradas, con bit de ganador.
+S -> Mensaje a A con estado cartas otros jugadores, puntaje, id jugador ganador.
+
+
+

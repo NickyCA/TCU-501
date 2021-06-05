@@ -1,0 +1,140 @@
+MENSAJE INICIO
+CLIENTE -> SERVIDOR
+{
+	"messageType": "initial",
+	"content" : {
+		"name": "NOMBRE",
+		"host": "true/false",
+		"id": "EMPTY | 00000"
+	}
+}
+
+SERVIDOR -> CLIENTE
+{
+	"messageType": "initialResponse",
+	"content" : {
+		"playerId": "IDJUGADOR",
+		"gameId": "00000"
+	}
+}
+
+MENSAJES SALA DE ESPERA
+SERVIDOR -> CLIENTE
+// Mensaje para enviar jugadores activos en la sala de espera.
+{
+	"messageType": "playersJoin",
+	"content" : {
+		"players": [
+			{
+				"playerId": "1",
+				"name": "NOMBRE"
+			},
+			{
+				"playerId": "2",
+				"name": "NOMBRE"
+			}
+		]
+	}
+}
+// Mensaje par iniciar el juego.
+{
+	"messageType": "gameStart",
+	"content" : {
+		"start": "true",
+	}
+}
+
+CLIENTE -> SERVIDOR
+// Mensaje para almacenar las opciones de la partida.
+{
+	"messageType": "gameOptions",
+	"content" : {
+		"objectsQuantity": "10",
+		"gameType": "1|2", // 1 - Por puntos | 2 - Por rondas ganadas
+		"roundpoints": "5",
+		"playersCards": "2",
+		"stopButton": "true/false",
+		"trapCard": "true/false"
+	}
+}
+
+
+MENSAJES JUEGO
+SERVIDOR -> CLIENTE
+// Mensaje inicial con opciones, tablero con objetos y cartas jugadores y puntos.
+{
+	"messageType": "game",
+	"content" : {
+		"options": {
+			"objectsQuantity": "10",
+			"gameType": "1|2", // 1 - Por puntos | 2 - Por rondas ganadas
+			"roundpoints": "5",
+			"playersCards": "2",
+			"stopButton": "true/false",
+			"trapCard": "true/false"
+			},
+		"board": {
+			"objects": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+			},
+		"players": [
+			{
+				"playerId": "1",
+				"name": "NOMBRE",
+				"cards": [1, 8],
+				"points": "0"
+			},
+			{
+				"playerId": "2",
+				"name": "NOMBRE",
+				"cards": [5, 7],
+				"points": "0"
+			}
+		]
+	}
+}
+
+// Mensaje para avisar los jugadores del estado del tablero.
+{
+	"messageType": "gameUpdateServer",
+	"content" : {
+		"players": [
+			{
+				"playerId": "1",
+				"name": "NOMBRE",
+				"foundCards": [],
+				"points": "0"
+			},
+			{
+				"playerId": "2",
+				"name": "NOMBRE",
+				"foundCards": [5],
+				"points": "0"
+			}
+		]
+		"winnerId": "0"
+	}
+}
+
+
+
+
+CLIENTE -> SERVIDOR
+// Mensaje para actualizar cartas encontradas por jugador.
+{
+	"messageType": "gameUpdate",
+	"content" : {
+		"playerId": "1",
+		"cardId": "0"
+		"winner": "0"
+	}
+}
+
+
+
+
+
+
+
+
+
+

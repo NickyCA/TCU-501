@@ -1,141 +1,106 @@
-/* eslint-disable import/extensions */
-import Common from './common.js';
+const baseColorOne = '#f27294';
+const baseColorTwo = '#f2dc6b';
+const baseColorOnergba = 'rgba(242,114,148,0.1)';
+const baseColorGrayrgba = 'rgba(240,240,240,0.1)';
 
-const socket = io();
+function showHelp() {
+    const htmlHelp = `<div class="help-content">
+    <h3>Reglas del juego</h3>
+    <ul>
+    <li>Cada jugador tratará de encontrar las cartas asignadas en el tablero</li>
+    <li>Las cartas asignadas se mostrarán sin color, sin embargo, en el tablero los colores variaran.</li> 
+    <li>Si se juega por rondas, cada ronda deberán encontrarse la cantidad de cartas configuradas por el anfitrión.</li>
+    <li>Si se juega por puntos, independientemente del número de cartas faltantes por encontrar, si se ha alcanzado la cantidad de puntos configurado. 
+    por el anfitrión entonces dicho jugador ganará.</li>
+    <li>Si se activa el botón de ganador, deberá presionarse este botón para indicar que se ha ganado la partida, de lo contrario
+    el juego no anunciará un ganador hasta que alguien lo presione (y haya encontrado todas sus cartas).</li>
+    <li>Si se activa la carta trampa, podrá ocultarse una carta de un contrincante. Solo se puede una por ronda.</li>
+    </ul>
+    <h3>Credits</h3>
 
-function generateInitialMessage(host, pName, id) {
-  const message = {
-    messageType: 'initial',
-    name: pName,
-    host,
-    gameId: id,
-  };
-  return JSON.stringify(message);
-}
-
-function validateUserInput(data, host = false) {
-  const errors = [];
-  let result = true;
-
-  if (data[0].trim().length === 0) {
-    errors.push('Must enter a nickname');
+    <div>`;
+    Swal.fire({
+      title: 'Ayuda',
+      icon: 'info',
+      html: htmlHelp,
+      showCloseButton: true,
+      focusConfirm: true,
+      confirmButtonText:
+        'Listo',
+      confirmButtonColor: baseColorOne,
+    });
   }
 
-  if (host === false && data[1].trim().length === 0) {
-    errors.push('Must enter the game ID you wish to join');
-  }
-
-  if (errors.length > 0) {
-    result = false;
-    Common.showInputsError(errors, 'Can not enter this game');
-  }
-
-  return result;
-}
-
-function askUserGuestGameInfo() {
-  Swal.mixin({
-    input: 'text',
-    confirmButtonText: 'Next &rarr;',
-    showCancelButton: true,
-    cancelButtonText: 'Cancel',
-    confirmButtonColor: Common.GetBaseColorOne(),
-    cancelButtonColor: Common.GetBaseColorTwo(),
-    progressSteps: ['1', '2'],
-  }).queue([
-    {
-      title: 'Name',
-      text: 'Please enter your nickname',
-    },
-    {
-      title: 'Game ID',
-      text: 'Please introduce the game ID',
-    },
-  ]).then((result) => {
-    if (result.value) {
-      if (validateUserInput(result.value)) {
-        localStorage.setItem('playerName', result.value[0]);
-        socket.emit('fromClient', generateInitialMessage(false, result.value[0], result.value[1]));
-      }
+  function validateUserInput(data, host = false) {
+    const errors = [];
+    let result = true;
+  
+    if (data[0].trim().length === 0) {
+      errors.push('Debe introducir un nombre de jugador.');
     }
-  });
-}
-
-function askUserHostGuestGameInfo() {
-  Swal.mixin({
-    input: 'text',
-    confirmButtonText: 'Start',
-    showCancelButton: true,
-    cancelButtonText: 'Cancel',
-    confirmButtonColor: Common.GetBaseColorOne(),
-    cancelButtonColor: Common.GetBaseColorTwo(),
-    progressSteps: ['1'],
-  }).queue([
-    {
-      title: 'Name',
-      text: 'Please enter your nickname',
-    },
-  ]).then((result) => {
-    if (result.value) {
-      if (validateUserInput(result.value, true)) {
-        localStorage.setItem('playerName', result.value[0]);
-        socket.emit('fromClient', generateInitialMessage(true, result.value[0], ''));
-      }
+  
+    if (host === false && data[1].trim().length === 0) {
+      errors.push('Debe introducir un ID de sesión para unirse.');
     }
-  });
-}
+  
+    if (errors.length > 0) {
+      result = false;
+      Common.showInputsError(errors, 'No se puede ingresar a la partida');
+    }
+  
+    return result;
+  }
 
-function loadWaitingRoom(response) {
-  localStorage.setItem('state', 'toWaitingRoom');
-  localStorage.setItem('playerId', response.playerId);
-  localStorage.setItem('gameId', response.gameId);
+  function askUserHostGuestGameInfo() {
+    Swal.mixin({
+      input: 'text',
+      confirmButtonText: 'Start',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: baseColorOne,
+      cancelButtonColor: baseColorTwo,
+      progressSteps: ['1'],
+    }).queue([
+      {
+        title: 'Name',
+        text: 'Please enter your name',
+      },
+    ]).then((result) => {
+      if (result.value) {
+        if (validateUserInput(result.value, true)) {
+          localStorage.setItem('playerName', result.value[0]);
+          redirectFunctionWaiting();
+        }
+      }
+    });
+  }
 
-  window.open(response.redirect, '_self');
-}
-
-function showErrorMessageLocal(response) {
-  Common.showCommonError('Error when initiating the game', response.errorMsg);
-}
-
-function addEvents() {
-  // Agregar evento al botón de crear sesión.
-  const create = document.getElementById('create');
+function redirectFunctionWaiting() {
+    window.location.href = "./sala_espera.xhtml";
+  }
+  
+  function redirectFunctionHelp() {
+    window.location.href = "./help.xhtml";
+  }
+  
+  function addEvents() {
+    // Agregar evento al botón de crear sesión.
+    const create = document.getElementById('create');
   create.addEventListener('click', askUserHostGuestGameInfo);
-
-  // Agregar evento al botón de unirse a sesión.
-  const join = document.getElementById('join');
-  join.addEventListener('click', askUserGuestGameInfo);
-
-  // Agregar evento al botón de ayuda
-  const help = document.getElementById('help-img-button');
-  help.addEventListener('click', Common.showHelp);
-}
-
-function messagesListener() {
-  socket.on('fromServer', (msg) => {
-    console.log(msg);
-    const response = JSON.parse(msg);
-    switch (response.messageType) {
-      case 'initialResponse':
-        loadWaitingRoom(response);
-        break;
-      case 'error':
-        showErrorMessageLocal(response);
-        break;
-      default:
-        break;
-    }
-  });
-}
-
-/*
-Función inicial.
-*/
-function init() {
-  localStorage.setItem('state', 'initial');
-  messagesListener();
-  addEvents();
-}
-
-// Espera a que se cargue la pagina para iniciar la funcion de init
-window.addEventListener('load', init);
+  
+  
+    // Agregar evento al botón de ayuda
+    const help = document.getElementById('help-img-button');
+    help.addEventListener('click', showHelp);
+  }
+  
+  /*
+  Función inicial.
+  */
+  function init() {
+    addEvents();
+  }
+  
+  // Espera a que se cargue la pagina para iniciar la funcion de init
+  window.addEventListener('load', init);
+  

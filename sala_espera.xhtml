@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 
 <head>
@@ -15,41 +15,72 @@
 	<link rel="mask-icon" href="img/logo/safari-pinned-tab.svg" color="#5bbad5"/>
 	<meta name="msapplication-TileColor" content="#da532c"/>
 	<meta name="theme-color" content="#ffffff"/>
-	<title>Sala de Espera - Katamotza</title>
-	<link href="css/common.css" rel="stylesheet" />
-	<link href="css/waiting.css" rel="stylesheet" />
+  <title>Settings Find Me!</title>
+  <link href="css/common.css" rel="stylesheet"/> 
+  <link href="css/waiting.css" rel="stylesheet"/> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee"/>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower" rel="stylesheet"/> 
+
 </head>
 
 <body class="Site">
 	<header id="website_header">
 		<img id="site_logo" src="img/logo/Doll.png" alt="Logo del sitio" />
 		<h1 id="site_title">Find Me!</h1>
-	</header>
+	  </header>
 	<main class="Site-content">
 		<div class="waiting_room_title">
-			<h2 class="waiting_room_title_col">Waiting Room</h2>
-			<label class="waiting_room_title_col" id="game_id">Game ID: 12345</label>
+			<h2 class="waiting_room_title_col">Customize your game</h2>
 		</div>
 		<div class="central_content">
 			<section id="players_panel" class="lateral">
-				<h3>Players:</h3>
+				<h3>Player:</h3>
 				<ul id="players_tag">
 					<li>Bellota</li>
 					<li>Bombón</li>
 					<li>Burbuja</li>
 					<li>Mojo jojo</li>
-				</ul>
-				<div class="buttonsContainer">
-					<button id="initGame">Start Game</button>
-					<button class="secondary-button" id="leave">Leave Game</button>
-				</div>
+				</ul> 
+				<!-- <form action="./juego.xhtml"> -->
+					<button id="play">Start Game</button>
+				<!-- </form> -->
+				<!-- <form action="./index.xhtml"> -->
+					<button id="leave">Leave Game</button>
+				<!-- </form> -->
 			</section>
 			<div class="center">
+				<section id="host_options" class="info_objects">
+					<h3>Settings:</h3>
+					<div class="game_options">
+						<div class="game_options_col">
+							<div class="game_options_item_row">
+								<label class="game_options_item_col" for="input_objects_quantity">Amount of objects in board:</label>
+								<input class="game_options_item_col" type="text" id="input_objects_quantity"
+									name="input_objects_quantity" />
+							</div>
+
+							<div class="game_options_item_row">
+								<label class="game_options_item_col" for="input_playercards_quantity">Amount of cards to find:</label>
+								<input class="game_options_item_col" type="text" id="input_playercards_quantity"
+									name="input_playercards_quantity" />
+							</div>
+
+						</div>
+						<div class="game_options_col">
+							<div class="game_options_item_row">
+								<label class="game_options_item_col" for="chk_winner_option">Activate winning button:</label>
+								<input class="game_options_item_col" type="checkbox" id="chk_winner_option"
+									name="chk_winner_option" />
+							</div>
+						</div>
+					</div>
+				</section>
 				<section id="game_tips" class="info_objects">
-					<h3>Game Tips:</h3>
+					<h3>Tips del juego:</h3>
 					<ul id="tip">
-						<li>
-							GAME TIPS: TO DO
+						<li>Remember if you set the game with the winning button, you have to press that button as soon as you find your cards, otherwise you won't be able to win!
+						</li>
+						<li>Be careful with the similar looking cards, they are very tricky!
 						</li>
 					</ul>
 				</section>
@@ -66,13 +97,11 @@
 		  </p>
 		</div>
 		<div id="help-button-section">
-		  <img id="help-img-button" alt="help" src="img/help.svg" class="help-button"/>
+			<a href="./help.xhtml" target="_blank"><img id="help-img-button" alt="help" src="img/help.svg" class="help-button"/></a>
 		</div>
 	  </footer>
-	<script src="./socket.io/socket.io.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script async="async" type="module" src="js/host.js"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	  <script async="async" src="js/waiting.js"></script>
 </body>
-
 
 </html>

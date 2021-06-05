@@ -91,33 +91,13 @@ section {
   flex-direction: row;
 }
 
-@media (max-width: 550px) {
-  .central_content {
-    flex-wrap: wrap-reverse;
-    justify-content: center;
-  }
-
-  .center {
-    margin-bottom: 0px;
-  }
-
-  #stats {
-    margin-left: -30px;
-  }
-}
-
 .info_objects {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
   flex: 1;
   border-radius: 25px;
   background: var(--color-fondo-info);
   padding: 20px;
   margin-bottom: 30px;
   border: 2px solid black;
-  min-width: 250px;
 }
 
 #help {
@@ -135,12 +115,6 @@ section {
 }
 
 /**/
-
-.big-button {
-  max-width: 200px;
-  font-size: 30px;
-  height: 110px;
-}
 
 button {
   max-width: 150px;
@@ -166,15 +140,6 @@ button {
   border: 2px solid var(--color-base_uno);
   border-radius: 10px;
 }
-
-.gray-buttonn {
-  background: linear-gradient(
-    to left top,
-    var(--color-secondary-one) 50%,
-    var(--color-secondary-two) 50%
-  );
-}
-
 button span {
   position: absolute;
   display: block;
@@ -269,7 +234,6 @@ button:hover span {
 
 /* Botón secundario */
 .secondary-button {
-  margin-bottom: 20px;
   max-width: 150px;
   height: 50px;
   background: linear-gradient(
@@ -385,6 +349,11 @@ button:hover span {
   animation-play-state: paused;
 }
 
+.information {
+  width: 55px;
+  height: auto;
+}
+
 .help-button {
   width: 80px;
   padding: 10px;
@@ -408,71 +377,4 @@ button:hover span {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
-  border: 0px none #0f5dc2;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #000000;
-}
-::-webkit-scrollbar-track {
-  background: #cf1717;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #3a95a1;
-}
-::-webkit-scrollbar-track:active {
-  background: #2b5bee;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-#stats {
-  border-collapse: collapse;
-  width: 100%;
-  text-align: center;
-}
-
-#stats td, #stats th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#stats tr:nth-child(even){background-color: #f2f2f2;}
-
-#stats tr:hover {background-color: #ddd;}
-
-#stats th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: var(--color-fondo-enc-pie);
-  color: white;
-}
-
-.medal {
-  width: 40px;
-  height: auto;
-}
-
-.information {
-  width: 55px;
-  height: auto;
 }
