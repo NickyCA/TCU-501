@@ -1,3 +1,4 @@
+const objectTotal = 6;
 const baseColorOne = '#f27294';
 const baseColorTwo = '#f2dc6b';
 const baseColorOnergba = 'rgba(242,114,148,0.1)';
@@ -132,8 +133,9 @@ function showInputsError(errors, titleText) {
       errors.push('El valor para la cantidad de cartas por jugador no es válido.');
     }
   
-    if (objectsQuantity > 375) {
-      errors.push('La cantidad de objetos en el tablero no puede ser mayor a 375.');
+    if (objectsQuantity > objectTotal) {
+      error = 'La cantidad de objetos en el tablero no puede ser mayor a '+ objectTotal;
+      errors.push(error);
     }
   
     return errors;
@@ -156,7 +158,6 @@ function showInputsError(errors, titleText) {
       showInputsError(errors, 'No se puede iniciar la partida');
     }
   }
-
 
 
 
@@ -184,3 +185,4 @@ function showInputsError(errors, titleText) {
   
   // Espera a que se cargue la pagina para iniciar la funcion de init
   window.addEventListener('load', init);
+ 

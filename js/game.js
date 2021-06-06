@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 let objectQuantity = 25; // constante que determina la cantidad de cartas en el tablero
-const objectTotal = 375; // cantidad maxima disponible de objetos para el tablero
+
 let playerCardQuantity = 5; // cantidad de cartas que debera de buscar el jugador
 const baseColorOne = '#f27294';
 const baseColorOnergba = 'rgba(242,114,148,0.1)';
 const baseColorTwo = '#f2dc6b';
 const soundEffectSuccess = document.createElement('audio'); // almacena el sonido de exito
 const soundEffectFail = document.createElement('audio'); // almacena el sonido de fallo
-
+const cardSrc = "img/cards/";
+const imgArray = ["cat","dog","hipo","lion","monkey","pig"];
+const objectTotal = imgArray.length; // cantidad maxima disponible de objetos para el tablero
 /*
 Regla del equipo:
  en caso de ser true se debe de hacer click en el boton
@@ -17,10 +19,6 @@ Regla del equipo:
  */
 let stopGameButtonRule = true;
 
-// colores para las cartas en el tablero:
-const colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
-  'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red',
-  'silver', 'teal', 'yellow'];
 
 /*
 arreglo que almacena los ids de los objetos que actualmente se encuentra en el tablero
@@ -74,6 +72,12 @@ function actualizarPuntaje() {
   vistaPuntaje.innerHTML = `<label id="points">${puntaje}</label>`;
 }
 
+function actualizarPuntosParaGanar() {
+  puntajeActual = playerCardQuantity - puntaje;
+  const vistaPuntaje = document.getElementById('round_points_toend');
+  vistaPuntaje.innerHTML = `<label id="round_points_toend">${puntajeActual} points left to win</label>`;
+}
+
 /*
 Reproduce el archivo de sonido identificado como soundEffectSuccess
 Se llama cuando hay un acierto
@@ -93,11 +97,11 @@ function soundEffectFailFun() {
 /*
  Genera el html de cada objeto para ser incluido en el tablero.
 */
-function completeBoardObjects(text) {
-  const objectColor = colors[Math.floor(Math.random() * colors.length)];
+function completeBoardFloraFauna(text) {
+  let src = cardSrc+text+".png";
   const newHtml = `<div id="o-${text}" class="grid-item">
   <div class="grid-item-face grid-item-face--front">
-    <label class="icon-${text}" style="color:${objectColor}"/>
+  <img src="${src}" class="cardsImgs" />
   </div>
   <div class="grid-item-face grid-item-face--back">
   </div>
@@ -131,31 +135,26 @@ function drawPlayerCards(newHtml) {
   cardsContainer.innerHTML = newHtml;
 }
 
-/*
-Genera los objetos y cartas de jugador.
-*/
-function gameObjectsGenerator() {
+function gameFloraFaunaGenerator() {
   // Limpia las cartas encontradas.
   foundCards = [];
 
-  // Obtiene los ids númericos de los objetos.
-  const objects = [...Array(objectTotal).keys()];
-
-  // Obtiene la cantidad de objetos configurada para la partida aleatoriamente.
-  const randomObjects = objects.sort(() => 0.5 - Math.random()).slice(0, objectQuantity);
+  const randomObjects = imgArray.sort(() => 0.5 - Math.random()).slice(0, objectQuantity);
+  console.log(randomObjects);
 
   // Obtiene los ids de los objetos.
-  gameBoardObjects = randomObjects.map((val) => String(val + 1).padStart(3, '0'));
+  gameBoardObjects = randomObjects.map((val) => String(val).padStart(3, '0'));
+  console.log("gameBoardObjects",gameBoardObjects);
 
   // Completa la información html de los objetos.
-  gameBoardCompleteObjects = gameBoardObjects.map((val) => completeBoardObjects(val));
-
+  gameBoardCompleteObjects = gameBoardObjects.map((val) => completeBoardFloraFauna(val));
+  console.log("html de los objetos",gameBoardCompleteObjects);
   // Obtiene las cartas del jugador.
   playerCards = gameBoardObjects.sort(() => 0.5 - Math.random()).slice(0, playerCardQuantity);
-
+  console.log("playerCardQuantity",playerCardQuantity);
   // Completa la información html de las cartas de jugador.
   playerCompleteCards = playerCards.map((val) => completePlayerCards(val));
-
+  console.log("html de las cartas de jugador",playerCompleteCards);
   // Inserta el nuevo html de objetos en la página.
   drawBoardObjects(gameBoardCompleteObjects.join(''));
 
@@ -183,7 +182,7 @@ function showWinner() {
       repeat
     `,
     willClose: () => {
-      gameObjectsGenerator();
+      gameFloraFaunaGenerator();
     },
   });
 }
@@ -200,6 +199,13 @@ function changeFoundsColor(id) {
   found.classList.add('gray');
 }
 
+
+function changeFoundImgColor(id) {
+  let cardId = 'o-';
+  cardId = cardId.concat(id);
+  const found = document.getElementById(cardId);
+  found.classList.add('foundImg');
+}
 /*
 Recibe el id del objeto que fue clickeado en el tablero
 Revisa si este objeto era parte de las cartas que el jugador debia buscar
@@ -214,15 +220,19 @@ y se activa la animacion de "shake" de la carta clickeada para denotar que es
 incoorrecta.
 */
 function matchClicked(gridItemId) {
-  const id = gridItemId.substring(2, 5);
+  const id = gridItemId.substring(2, gridItemId.length);
+  console.log("id:",id);
+  console.log("gridItemId:",gridItemId);
   const obj = document.getElementById(gridItemId);
 
   if (playerCards.includes(id) === true) {
     if (foundCards.includes(id) === false) {
-      obj.classList.toggle('is-flipped');
+      //obj.classList.toggle('is-flipped');
+      changeFoundImgColor(id);
       foundCards.push(id);
       soundEffectSuccessFun();
       actualizarPuntaje();
+      actualizarPuntosParaGanar();
       changeFoundsColor(id);
     }
 
@@ -238,23 +248,6 @@ function matchClicked(gridItemId) {
     setTimeout(() => { obj.classList.remove('wrong'); }, 1000);
   }
 }
-
-/*
-Obtiene la lista de elementos de clase grid-tems (objetos del tablero)
-y le asigna una EventListener a cada uno de ellos que tiene
-asociado el metodo que realiza las revisiones respectivas
-sobre si el objeto clickeado es un acierto o es incorrecto
-*/
-// function checkClickedItem() {
-//   const gridItems = document.getElementsByClassName('grid-item');
-//   console.assert(gridItems);
-//   for (let i = 0; i < gridItems.length; i += 1) {
-//     // Tratar de quitar flecha | HTTP DATA Attribute
-//     gridItems[i].addEventListener('click', () => {
-//       matchClicked(gridItems[i].id);
-//     });
-//   }
-// }
 
 /*
 Muestra un mensaje de confirmación antes de abandonar el juego.
@@ -325,12 +318,12 @@ function addEvents() {
 
   objectsContainer.addEventListener('click', (e) => {
     let id;
-    if (e.target.nodeName === 'label' && e.target.parentNode.parentNode.classList.contains('grid-item') === true) {
+    if (e.target.nodeName === 'img' && e.target.parentNode.parentNode.classList.contains('grid-item') === true) {
       id = e.target.parentNode.parentNode.id;
     } else if (e.target.nodeName === 'div' && e.target.parentNode.classList.contains('grid-item') === true) {
       id = e.target.parentNode.id;
     }
-
+    console.log("ID:",id);
     if (id) {
       matchClicked(id);
     }
@@ -357,6 +350,12 @@ function addSounds() {
   soundEffectFail.src = 'js/sound/fail.ogg';
 }
 
+
+function closingCode(){
+  localStorage.clear();
+   return null;
+}
+
 /*
 Función inicial.
 */
@@ -369,8 +368,11 @@ function init() {
   addSounds(); // carga los sonidos
 
   // Generar cartas
-  gameObjectsGenerator();
+  console.log("playerCardQuantity",playerCardQuantity);
+  //gameObjectsGenerator();
+  gameFloraFaunaGenerator();
 }
 
 // Espera a que se cargue la pagina para iniciar la funcion de init
 window.addEventListener('load', init);
+window.onbeforeunload = closingCode;

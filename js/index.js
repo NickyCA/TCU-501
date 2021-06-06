@@ -93,6 +93,7 @@ function redirectFunctionWaiting() {
     const help = document.getElementById('help-img-button');
     help.addEventListener('click', showHelp);
   }
+
   
   /*
   Función inicial.
@@ -103,4 +104,5 @@ function redirectFunctionWaiting() {
   
   // Espera a que se cargue la pagina para iniciar la funcion de init
   window.addEventListener('load', init);
+ 
   

@@ -13,25 +13,26 @@
 }
 
 .grid-item {
-  height: 50px;
+  height: 155px;
   flex-basis: 50px;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 50px;
+  /* width: 111%; */
+  min-width: 155px;
   position: relative;
   padding: 0px;
   box-sizing: border-box;
   background-color: #FFF;
-  box-shadow: 5px 8px 3px 2px #ccc; 
+  box-shadow: 5px 8px 3px 2px #ccc;
   margin: 10px;
   text-align: center;
   padding-top: 7px;
-
   cursor: pointer;
-  transform-style: preserve-3d;
-  transform-origin: center right;
+  /* transform-style: preserve-3d; */
+  /* transform-origin: center right; */
   transition: transform 1s;
   text-shadow: 1px 1px 2px grey;
+
 }
 
 .grid-item.is-flipped {
@@ -58,20 +59,23 @@
 }
 
 .grid-item-player {
-  height: 50px;
+  
+  height: 54px;
   flex-basis: 50px;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 50px;
+  /* width: 60px; */
+  min-width: 100px;
   position: relative;
   padding: 0px;
   box-sizing: border-box;
   background-color: #FFF;
-  box-shadow: 0px 0px 5px 5px #ccc; 
+  box-shadow: 0px 0px 5px 5px #ccc;
   margin: 10px;
   text-align: center;
   padding-top: 7px;
-  color: rgb(252, 122, 122);
+  color: #5957e0;
+  font-size: large;
 }
 
 
@@ -143,6 +147,17 @@ main section h2
   opacity: 0.2;
 }
 
+.cardsImgs {
+  width: 155px;
+  height: 155px;
+}
+
+
+.foundImg{
+  content:url("img/cards/blank.png");
+  width: 155px;
+  height: 155px;
+}
 /* @media(max-width: 1333px) {
   .grid-item {
     flex-basis: 33.33%;
