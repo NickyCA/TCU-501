@@ -5,33 +5,29 @@ const baseColorOnergba = 'rgba(242,114,148,0.1)';
 const baseColorGrayrgba = 'rgba(240,240,240,0.1)';
 
 function showHelp() {
-    const htmlHelp = `<div class="help-content">
-    <h3>Reglas del juego</h3>
-    <ul>
-    <li>Cada jugador tratará de encontrar las cartas asignadas en el tablero</li>
-    <li>Las cartas asignadas se mostrarán sin color, sin embargo, en el tablero los colores variaran.</li> 
-    <li>Si se juega por rondas, cada ronda deberán encontrarse la cantidad de cartas configuradas por el anfitrión.</li>
-    <li>Si se juega por puntos, independientemente del número de cartas faltantes por encontrar, si se ha alcanzado la cantidad de puntos configurado. 
-    por el anfitrión entonces dicho jugador ganará.</li>
-    <li>Si se activa el botón de ganador, deberá presionarse este botón para indicar que se ha ganado la partida, de lo contrario
-    el juego no anunciará un ganador hasta que alguien lo presione (y haya encontrado todas sus cartas).</li>
-    <li>Si se activa la carta trampa, podrá ocultarse una carta de un contrincante. Solo se puede una por ronda.</li>
-    </ul>
-    <h3>Credits</h3>
+  const htmlHelp = `<div class="help-content">
+  <h3>Rules</h3>
+  <ul>
+  <li>The player will have a set of cards assigned for them to find.</li>
+  <li>The cards assigned to the player will consist only of the name, they will not be the same as the images presented on the board.</li> 
+  <li>The player will need to associate the word (his cards) with an image in the game board.</li>
+  <li>Once the player has found all of the cards matching the words, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
+  <li>If the winning button is selected, the player will need to press it once he has found all the cards. The winning message will not appear by itself.</li>
+  </ul>
+  <h3>Credits</h3>
 
-    <div>`;
-    Swal.fire({
-      title: 'Ayuda',
-      icon: 'info',
-      html: htmlHelp,
-      showCloseButton: true,
-      focusConfirm: true,
-      confirmButtonText:
-        'Listo',
-      confirmButtonColor: baseColorOne,
-    });
-  }
-
+  <div>`;
+  Swal.fire({
+    title: 'Help',
+    icon: 'info',
+    html: htmlHelp,
+    showCloseButton: true,
+    focusConfirm: true,
+    confirmButtonText:
+      'Listo',
+    confirmButtonColor: baseColorOne,
+  });
+}
 
 function insertPlayersHtml() {
     const newHtml = `

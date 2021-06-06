@@ -302,10 +302,39 @@ function checkWinner() {
   }
 }
 
+function showHelp() {
+  const htmlHelp = `<div class="help-content">
+  <h3>Rules</h3>
+  <ul>
+  <li>The player will have a set of cards assigned for them to find.</li>
+  <li>The cards assigned to the player will consist only of the name, they will not be the same as the images presented on the board.</li> 
+  <li>The player will need to associate the word (his cards) with an image in the game board.</li>
+  <li>Once the player has found all of the cards matching the words, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
+  <li>If the winning button is selected, the player will need to press it once he has found all the cards. The winning message will not appear by itself.</li>
+  </ul>
+  <h3>Credits</h3>
+
+  <div>`;
+  Swal.fire({
+    title: 'Help',
+    icon: 'info',
+    html: htmlHelp,
+    showCloseButton: true,
+    focusConfirm: true,
+    confirmButtonText:
+      'Listo',
+    confirmButtonColor: baseColorOne,
+  });
+}
+
 /*
 Añade los eventos a los botones.
 */
 function addEvents() {
+
+  // Agregar evento al botón de ayuda
+  const help = document.getElementById('help-img-button');
+  help.addEventListener('click', showHelp);
   // Agregar evento al botón de abandonar
   const leave = document.getElementById('leave');
   leave.addEventListener('click', exitConfirm);
