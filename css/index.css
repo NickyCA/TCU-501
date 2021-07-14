@@ -2,8 +2,9 @@ main
 {
   text-align: center;
   margin:0 auto;
-  margin-top: 50px;
-  width: 25%
+  margin-top: 195px;
+  width: 20%;
+  min-width: fit-content;
 }
 
 #input_nickname
@@ -24,5 +25,5 @@ main
 }
 
 #letsPlay {
-  padding-top: 30%;
+  padding-top: 6%;
 }

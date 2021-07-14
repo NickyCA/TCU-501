@@ -3,7 +3,10 @@
 
 :root {
   --color_fondo: #ffffff;
-  --color-fondo-enc-pie: #f2c572;
+  /* --color-fondo-enc-pie: #f2c572; */
+
+  --color-fondo-enc-pie: #E6C6C5;
+
   --color-fondo-info: #f3f3f3;
   --color-base_uno: #f27294;
   --color-base_dos: #f2acda;
@@ -37,18 +40,21 @@ header h1 {
 
 body {
   background-color: var(--color-fondo);
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffdc28' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  /* background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffdc28' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); */
+  background-image: url("../img/Portada.svg");
   font-family: var(--fuente-principal);
   margin: 0px;
 }
 
 #site_logo {
-  width: 100px;
+  width: 52px;
+  max-width: 50px;
   height: 20%;
   border-radius: 3px;
   margin-right: 8px;
   vertical-align: middle;
   display: inline-block;
+  padding-top: 10px;
 }
 
 footer {
@@ -115,6 +121,10 @@ section {
 }
 
 /**/
+
+#help-tag {
+  font-weight: bold;
+}
 
 button {
   max-width: 150px;
@@ -358,20 +368,38 @@ button:hover span {
   width: 80px;
   padding: 10px;
   cursor: pointer;
+  padding-right: 20px;
+  padding-top: 27px;
 }
 
 .help-content {
   text-align: justify;
 }
 
+#help-button-section p {
+	padding-right: 10px;
+
+}
+
 #help-button-section img {
 	transform: scale(1);
 	transition: .3s ease-in-out;
+  padding-bottom: 0px;
 }
 
 #help-button-section:hover img {
 	transform: scale(0.8);
 }
+
+#info-section img {
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+#info-section:hover img {
+	transform: scale(0.8);
+}
+
 
 .footer-info {
   display: flex;

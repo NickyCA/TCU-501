@@ -1,4 +1,4 @@
-const objectTotal = 6;
+const objectTotal = 20;
 const baseColorOne = '#f27294';
 const baseColorTwo = '#f2dc6b';
 const baseColorOnergba = 'rgba(242,114,148,0.1)';
@@ -9,9 +9,9 @@ function showHelp() {
   <h3>Rules</h3>
   <ul>
   <li>The player will have a set of cards assigned for them to find.</li>
-  <li>The cards assigned to the player will consist only of the name, they will not be the same as the images presented on the board.</li> 
-  <li>The player will need to associate the word (his cards) with an image in the game board.</li>
-  <li>Once the player has found all of the cards matching the words, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
+  <li>The cards assigned to the player will be sentences describing a card on the board.</li> 
+  <li>The player will need to associate the sentence (his card) with an image in the game board.</li>
+  <li>Once the player has found all of the cards matching the sentences, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
   <li>If the winning button is selected, the player will need to press it once he has found all the cards. The winning message will not appear by itself.</li>
   </ul>
   <h3>Credits</h3>
@@ -55,7 +55,7 @@ Swal.fire({
     Swal.fire({
         title: 'Leaving game',
         text: 'Bye bye!',
-        imageUrl: 'https://i.imgflip.com/44360m.jpg',
+       /*  imageUrl: 'https://i.imgflip.com/44360m.jpg', */
         timer: 2000,
         timerProgressBar: true,
         confirmButtonText: 'OK',
@@ -122,19 +122,35 @@ function showInputsError(errors, titleText) {
  function gameOptionsValidate(objectsQuantity, playersCardsQuantity) {
     const errors = [];
     if (Number.isNaN(objectsQuantity)) {
-      errors.push('El valor para la cantidad de objetos en el tablero no es válido.');
+      errors.push('Amount of objects in board is not a valid number.');
     }
 
-    if (Number.isNaN(playersCardsQuantity) || playersCardsQuantity > objectsQuantity) {
-      errors.push('El valor para la cantidad de cartas por jugador no es válido.');
+    if (Number.isNaN(playersCardsQuantity)) {
+      error = 'Amount of cards to find is not a valid number';
+      errors.push(error);
+    }
+
+    if (playersCardsQuantity > objectTotal) {
+      error = 'Amount of cards to find can not be more than '+ objectTotal;
+      errors.push(error);
     }
   
     if (objectsQuantity > objectTotal) {
-      error = 'La cantidad de objetos en el tablero no puede ser mayor a '+ objectTotal;
+      error = 'Amount of objects on board can not be more than '+ objectTotal;
       errors.push(error);
     }
   
     return errors;
+  }
+
+  function gameReminders() {
+    const newHtml = `
+    <li>${'The amount of cards to find and the amount of objects on board can not be more than '+ objectTotal}</li>
+    `;
+
+    const playersContainer = document.getElementById('tip');
+    playersContainer.innerHTML += newHtml;
+  
   }
 
   function startGame() {
@@ -151,7 +167,7 @@ function showInputsError(errors, titleText) {
       window.open('./juego.xhtml', '_self');
         
     } else {
-      showInputsError(errors, 'No se puede iniciar la partida');
+      showInputsError(errors, 'Wrong settings');
     }
   }
 
@@ -175,6 +191,7 @@ function showInputsError(errors, titleText) {
 
   function init() {
     insertPlayersHtml();
+    gameReminders();
     addEvents();
     localStorage.setItem('state', 'waiting');
   }

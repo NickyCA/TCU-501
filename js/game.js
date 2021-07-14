@@ -7,8 +7,54 @@ const baseColorOnergba = 'rgba(242,114,148,0.1)';
 const baseColorTwo = '#f2dc6b';
 const soundEffectSuccess = document.createElement('audio'); // almacena el sonido de exito
 const soundEffectFail = document.createElement('audio'); // almacena el sonido de fallo
-const cardSrc = "img/cards/";
-const imgArray = ["cat","dog","hipo","lion","monkey","pig"];
+const cardSrc = "img/cards/new/";
+
+let bear =  document.createElement('audio');
+let bunnies =  document.createElement('audio');
+let cat =  document.createElement('audio');
+let alligator =  document.createElement('audio');
+let deer =  document.createElement('audio');
+let dog =  document.createElement('audio');
+let elephant =  document.createElement('audio');
+let fox =  document.createElement('audio');
+let frogs =  document.createElement('audio');
+let giraffe =  document.createElement('audio');
+let jellyfish =  document.createElement('audio');
+let kangaroo =  document.createElement('audio');
+let lion =  document.createElement('audio');
+let monkey =  document.createElement('audio');
+let piggies =  document.createElement('audio');
+let octopus =  document.createElement('audio');
+let sheep =  document.createElement('audio');
+let turtle =  document.createElement('audio');
+let whale =  document.createElement('audio');
+let zebra =  document.createElement('audio');
+const soundArray = [bear, bunnies, cat, alligator, deer, dog, elephant, fox, frogs, giraffe, jellyfish, kangaroo, lion, monkey, piggies, octopus, sheep, turtle, whale, zebra];
+
+const imgArray = ["Bear","Bunnies","Cat","Cocodrilo","Deer","Dog","Elephant","fox","Frogs","Giraffe","Jellyfish","Kangaroo","lion","monkey","Piggies","Octopus","Sheep","Turtle","Whale","Zebra"];
+
+const sentences = [
+"The bear is eating a fish.",
+"The two rabbits are jumping in the grass.",
+"The cat is sleeping on the table.",
+"The alligator is swimming.",
+"The deer is running in the forest.",
+"The dog is barking at the tree.",
+"The elephant is drinking water.",
+"The fox is smelling the flower.",
+"The frogs are jumping over the leaves.",
+"The giraffe is eating the leaves that are on top of the tree.",
+"There are two jellyfish swimming in the ocean.",
+"The kangaroo is carrying its baby.",
+"The lion is thinking about his dinner.",
+"The monkey is eating a banana.",
+"The three pigs are happily eating.",
+"The octopus is hiding behind a rock.",
+"Two sheep are looking at the moon.",
+"The turtle is walking.",
+"The whale is sleeping.",
+"The zebra is running in the fields."
+];
 const objectTotal = imgArray.length; // cantidad maxima disponible de objetos para el tablero
 /*
 Regla del equipo:
@@ -54,7 +100,7 @@ function showError(titleText, errorMessage) {
     icon: 'error',
     title: titleText,
     text: errorMessage,
-    confirmButtonText: 'Bueno',
+    confirmButtonText: 'OK',
     confirmButtonColor: baseColorOne,
     timer: 2000,
     timerProgressBar: true,
@@ -74,16 +120,28 @@ function actualizarPuntaje() {
 
 function actualizarPuntosParaGanar() {
   puntajeActual = playerCardQuantity - puntaje;
+  console.log("puntajeActual: ",puntajeActual);
+  if(puntajeActual < 0) {
+    puntajeActual = playerCardQuantity;
+  }
   const vistaPuntaje = document.getElementById('round_points_toend');
   vistaPuntaje.innerHTML = `<label id="round_points_toend">${puntajeActual} points left to win</label>`;
 }
+
+
+
 
 /*
 Reproduce el archivo de sonido identificado como soundEffectSuccess
 Se llama cuando hay un acierto
 */
-function soundEffectSuccessFun() {
-  soundEffectSuccess.play();
+function soundEffectSuccessFun(id) {
+  let index = imgArray.indexOf(id,0);
+  if(index != -1){
+    soundArray[index].play();
+  }else{
+    soundEffectSuccess.play();
+  }
 }
 
 /*
@@ -109,11 +167,22 @@ function completeBoardFloraFauna(text) {
   return newHtml;
 }
 
+function mapImgToSentence(text){
+  let index = imgArray.indexOf(text,0);
+  console.log("INDEX: ", index, imgArray,"/n",imgArray[index], sentences[index]);
+  if(index != -1){
+    return sentences[index];
+  }
+  return "";
+}
+
 /*
  Genera el html de cada carta de jugador para ser incluido en la sección lateral.
 */
 function completePlayerCards(text) {
-  const newHtml = `<div id="c-${text}" class="grid-item-player">${text}</div>`;
+  console.log("completePlayerCards text: ",text);
+  const sentence = mapImgToSentence(text);
+  const newHtml = `<div id="c-${text}" class="grid-item-player">${sentence}</div>`;
   return newHtml;
 }
 
@@ -138,8 +207,8 @@ function drawPlayerCards(newHtml) {
 function gameFloraFaunaGenerator() {
   // Limpia las cartas encontradas.
   foundCards = [];
-
-  const randomObjects = imgArray.sort(() => 0.5 - Math.random()).slice(0, objectQuantity);
+  let imgArrayCopy = [...imgArray];
+  const randomObjects = imgArrayCopy.sort(() => 0.5 - Math.random()).slice(0, objectQuantity);
   console.log(randomObjects);
 
   // Obtiene los ids de los objetos.
@@ -171,7 +240,7 @@ Genera el mensaje cuando se gana la partida y carga un gif como parte del efecto
 */
 function showWinner() {
   Swal.fire({
-    title: '¡Felicidades ha ganado la partida!',
+    title: 'Congratulations, you have won!',
     width: 600,
     confirmButtonColor: baseColorOne,
     padding: '3em',
@@ -230,7 +299,7 @@ function matchClicked(gridItemId) {
       //obj.classList.toggle('is-flipped');
       changeFoundImgColor(id);
       foundCards.push(id);
-      soundEffectSuccessFun();
+      soundEffectSuccessFun(id);
       actualizarPuntaje();
       actualizarPuntosParaGanar();
       changeFoundsColor(id);
@@ -268,7 +337,7 @@ function exitConfirm() {
       Swal.fire({
           title: 'Leaving game',
           text: 'Bye bye!',
-          imageUrl: 'https://i.imgflip.com/44360m.jpg',
+         /*  imageUrl: 'https://i.imgflip.com/44360m.jpg' ,*/
           timer: 2000,
           timerProgressBar: true,
           confirmButtonText: 'OK',
@@ -298,7 +367,7 @@ function checkWinner() {
   if (foundCards.length == playerCardQuantity) {
     showWinner();
   } else {
-    showError('Error', 'Ud no ha ganado.');
+    showError('Error', 'You have not won yet.');
   }
 }
 
@@ -307,9 +376,9 @@ function showHelp() {
   <h3>Rules</h3>
   <ul>
   <li>The player will have a set of cards assigned for them to find.</li>
-  <li>The cards assigned to the player will consist only of the name, they will not be the same as the images presented on the board.</li> 
-  <li>The player will need to associate the word (his cards) with an image in the game board.</li>
-  <li>Once the player has found all of the cards matching the words, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
+  <li>The cards assigned to the player will be sentences describing a card on the board.</li> 
+  <li>The player will need to associate the sentence (his card) with an image in the game board.</li>
+  <li>Once the player has found all of the cards matching the sentences, a message indicating that he has won will appear and a new game will be created (with the same game settings).</li>
   <li>If the winning button is selected, the player will need to press it once he has found all the cards. The winning message will not appear by itself.</li>
   </ul>
   <h3>Credits</h3>
@@ -369,12 +438,44 @@ function insertPlayersHtml() {
 }
 
 
+//const soundArray = [bear, bunnies, cat, alligator, deer, dog, elephant, fox, frogs, jiraffe, jellyfish, kangaroo, lion, monkey, piggies, octopus, sheep, turtle, whale, zebra];
+
+function initSounds(){
+  for (let index = 0; index < soundArray.length; index++) {
+    soundArray[index] = document.createElement('audio');
+  }
+  
+  soundArray[0].src = 'audios/bear.ogg';
+  soundArray[1].src = 'audios/rabbit.ogg';
+  soundArray[2].src = 'audios/cat.ogg';
+  soundArray[3].src = 'audios/alligator.ogg';
+  soundArray[4].src = 'audios/deer.ogg';
+  soundArray[5].src = 'audios/dog.ogg';
+  soundArray[6].src = 'audios/elephant.ogg';
+  soundArray[7].src = 'audios/fox.ogg';
+  soundArray[8].src = 'audios/frog.ogg';
+  soundArray[9].src = 'audios/giraffe.ogg';
+  soundArray[10].src = 'audios/jellyfish.ogg';
+  soundArray[11].src = 'audios/kangaroo.ogg';
+  soundArray[12].src = 'audios/lion.ogg';
+  soundArray[13].src = 'audios/monkey.ogg';
+  soundArray[14].src = 'audios/pigs.ogg';
+  soundArray[15].src = 'audios/octopus.ogg';
+  soundArray[16].src = 'audios/sheep.ogg';
+  soundArray[17].src = 'audios/turtle.ogg';
+  soundArray[18].src = 'audios/whale.ogg';
+  soundArray[19].src = 'audios/zebra.ogg';
+
+
+}
+
 
 /*
 Carga los archivos de audio y los asocia a las variables
 soundEffectSuccess y soundEffectFail respectivamente.
 */
 function addSounds() {
+  initSounds();
   soundEffectSuccess.src = 'js/sound/success.ogg';
   soundEffectFail.src = 'js/sound/fail.ogg';
 }
@@ -397,7 +498,7 @@ function init() {
   addSounds(); // carga los sonidos
 
   // Generar cartas
-  console.log("playerCardQuantity",playerCardQuantity);
+
   //gameObjectsGenerator();
   gameFloraFaunaGenerator();
 }

@@ -1,3 +1,7 @@
+body {
+  background-image: url("../img/PortadaFondo.svg");
+}
+
 #objects-container {
   margin-top: 60px;
 }
@@ -23,8 +27,8 @@
   padding: 0px;
   box-sizing: border-box;
   background-color: #FFF;
-  box-shadow: 5px 8px 3px 2px #ccc;
-  margin: 10px;
+  box-shadow: 2px 4px 3px 2px #ccc;
+  margin: 30px;
   text-align: center;
   padding-top: 7px;
   cursor: pointer;
@@ -60,22 +64,23 @@
 
 .grid-item-player {
   
-  height: 54px;
   flex-basis: 50px;
   flex-grow: 0;
   flex-shrink: 0;
-  /* width: 60px; */
-  min-width: 100px;
+  width: 60px;
+  min-width: fit-content;
+  min-height: fit-content;
   position: relative;
   padding: 0px;
   box-sizing: border-box;
   background-color: #FFF;
-  box-shadow: 0px 0px 5px 5px #ccc;
+  box-shadow: 2px 4px 3px 2px #ccc;
   margin: 10px;
   text-align: center;
   padding-top: 7px;
   color: #5957e0;
   font-size: large;
+
 }
 
 

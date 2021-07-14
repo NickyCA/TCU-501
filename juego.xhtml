@@ -8,11 +8,16 @@
 	<meta name="author" content="Castillo, Nicole" />
 	<meta name="copyright" content="Castillo, Nicole" />
 	<meta name="keywords" content="aplicacion, web, tcu-501" />
-	<link rel="apple-touch-icon" sizes="180x180" href="img/logo/apple-touch-icon.png"/>
-	<link rel="icon" type="image/png" sizes="32x32" href="img/logo/favicon-32x32.png"/>
-	<link rel="icon" type="image/png" sizes="16x16" href="img/logo/favicon-16x16.png"/>
-	<link rel="manifest" href="img/logo/site.webmanifest"/>
-	<link rel="mask-icon" href="img/logo/safari-pinned-tab.svg" color="#5bbad5"/>
+	<link rel="shortcut icon" href="img/logo/iconified/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="img/logo/iconified/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="img/logo/iconified/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="img/logo/iconified/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="img/logo/iconified/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="img/logo/iconified/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="img/logo/iconified/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="img/logo/iconified/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="img/logo/iconified/apple-touch-icon-152x152.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="img/logo/iconified/apple-touch-icon-180x180.png" />
 	<meta name="msapplication-TileColor" content="#da532c"/>
 	<meta name="theme-color" content="#ffffff"/>
   	<title>Playing Find Me!</title>
@@ -26,7 +31,7 @@
 
 <body class="Site">
 	<header id="website_header">
-		<img id="site_logo" src="img/logo/Doll.png" alt="Logo del sitio" />
+		<img id="site_logo" src="img/logo/kodama.png" alt="Logo del sitio" />
 		<h1 id="site_title">Find Me!</h1>
 	  </header>
 	<main class="Site-content">
@@ -36,7 +41,7 @@
 
 				<section id="game_info" class="info_objects">
 					<h3>Game Status</h3>
-					<label id="round_points_toend">Points left to win:</label>
+					<label id="round_points_toend">Points left to win</label>
 				</section>
 				<section id="players_info" class="info_objects">
 					<h3 id="player_tag">Bellota</h3>
@@ -51,54 +56,7 @@
 							</section>
 						</li>
 					</ul>
-					<!-- <h3>Jugadores</h3> -->
-					<!-- <ul id="players_game_info">
-						<li>
-							<section id="player2_token">
-								<h4>Bombón</h4>
-								<label>5 puntos</label>
-								<div class="container">
-									<div class="grid-row">
-										<div class="grid-item-player"><label class="icon-021" /></div>
-										<div class="grid-item-player"><label class="icon-022" /></div>
-										<div class="grid-item-player"><label class="icon-023" /></div>
-										<div class="grid-item-player"><label class="icon-024" /></div>
-										<div class="grid-item-player"><label class="icon-025" /></div>
-									</div>
-								</div>
-							</section>
-						</li>
-						<li>
-							<section id="player3_token">
-								<h4>Burbuja</h4>
-								<label>8 puntos</label>
-								<div class="container">
-									<div class="grid-row">
-										<div class="grid-item-player"><label class="icon-031" /></div>
-										<div class="grid-item-player"><label class="icon-032" /></div>
-										<div class="grid-item-player"><label class="icon-033" /></div>
-										<div class="grid-item-player"><label class="icon-034" /></div>
-										<div class="grid-item-player"><label class="icon-035" /></div>
-									</div>
-								</div>
-							</section>
-						</li>
-						<li>
-							<section id="player4_token">
-								<h4>Mojo jojo</h4>
-								<label>0 puntos</label>
-								<div class="container">
-									<div class="grid-row">
-										<div class="grid-item-player"><label class="icon-041" /></div>
-										<div class="grid-item-player"><label class="icon-042" /></div>
-										<div class="grid-item-player"><label class="icon-043" /></div>
-										<div class="grid-item-player"><label class="icon-044" /></div>
-										<div class="grid-item-player"><label class="icon-045" /></div>
-									</div>
-								</div>
-							</section>
-						</li>
-					</ul> -->
+
 					<div class="buttonsContainer">
 						<button id="stop">Won!</button>
 						<button class="secondary-button" id="leave">Leave</button>
@@ -113,15 +71,19 @@
 	</main>
 	<footer class="footer-info">
 		<div id="footer-info">
-		  <p>
-			<small><br />
-			  <a href="https://accionsocial.ucr.ac.cr/galeria/tcu-501-materiales-didacticos-en-ingles/" target="_blank"><img src="img/tcu.svg"
-				  class="information" alt="project-info" /></a> <br />
+		  <p id="info-section">  
+			<small>
+				
+			  <a href="https://accionsocial.ucr.ac.cr/galeria/tcu-501-materiales-didacticos-en-ingles/" target="_blank"><img src="img/tcu.jpg"
+				  class="information" alt="project-info" /></a> 
+				  <br />
+				  Castillo Arguedas, Nicole <br />Student project for TCU-501 
 			</small>
 		  </p>
 		</div>
 		<div id="help-button-section">
-			<img id="help-img-button" alt="help" src="img/help.svg" class="help-button"/>
+			<img id="help-img-button" alt="help" src="img/help.png" class="help-button"/>
+			<p id="help-tag">Game instructions</p>
 		</div>
 	  </footer>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
