@@ -122,8 +122,11 @@ section {
 
 /**/
 
-#help-tag {
+#help-tag, #help-tag-spa, #credits {
   font-weight: bold;
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 button {
@@ -361,6 +364,11 @@ button:hover span {
 
 .information {
   width: 55px;
+  height: auto;
+}
+
+.informationUCR {
+  width: 92px;
   height: auto;
 }
 

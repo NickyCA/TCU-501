@@ -1,39 +1,20 @@
-the alligator is swimming 
-
-the bear is eating a fish
-
-the cat is sleeping on the table
-
-the deer is running in the forest
-
-the elephant is drinking water
-
-the frogs are jumping over the leaves
-
-the giraffe is eating the leaves that are on top of the tree
-
-there are two jellyfish swimming in the ocean
-
-the kangoroo is carrying it's baby
-
-the octupus is hiding behind a rock
-
-the three pigs are happily eating 
-
-the two rabbits are jumping in the grass
-
-the turtle is walking towards goal
-
-the whale is sleeping
-
-the zebra is running in the fields
-
-two sheeps are looking at the moon
-
-the lion is thinking about his dinner    --
-
-the dog is barking at the tree
-
-the mokey is eating a banana --
-
-the fox is smelling the flower --
+"The bear is eating a fish.",
+"The two rabbits are jumping in the grass.",
+"The cat is sleeping on the table.",
+"The alligator is swimming.",
+"The deer is running in the forest.",
+"The dog is barking at the tree.",
+"The elephant is drinking water.",
+"The fox is smelling the flower.",
+"The frogs are jumping over the leaves.",
+"The giraffe is eating the leaves that are on top of the tree.",
+"There are two jellyfish swimming in the ocean.",
+"The kangaroo is carrying its baby.",
+"The lion is thinking about his dinner.",
+"The monkey is eating a banana.",
+"The three pigs are happily eating.",
+"The octopus is hiding behind a rock.",
+"Two sheep are looking at the moon.",
+"The turtle is walking.",
+"The whale is sleeping.",
+"The zebra is running in the fields."
